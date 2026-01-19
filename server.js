@@ -8,6 +8,17 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+app.get("/", (req, res) => {
+  res.send("AI Try-On Backend is running 🚀");
+});
+
+app.get("/health", (req, res) => {
+  res.json({
+    status: "ok",
+    uptime: process.uptime(),
+    time: new Date()
+  });
+});
 
 const upload = multer({ dest: "uploads/" });
 
@@ -70,4 +81,5 @@ app.listen(3000, () => {
 app.get("/health", (req, res) => {
   res.json({ status: "ok", time: new Date() });
 });
+
 
